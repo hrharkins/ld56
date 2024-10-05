@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caqjuhs25otn7"
-path="res://.godot/imported/tiles.png-6210dc1999f2fe0fa5bc87132ea6f658.ctex"
+uid="uid://cotlo1ghay4ps"
+path="res://.godot/imported/dungball.png-41e665728666a8be775b3b9f0d3c4f69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/desert/tiles.png"
-dest_files=["res://.godot/imported/tiles.png-6210dc1999f2fe0fa5bc87132ea6f658.ctex"]
+source_file="res://assets/tiles/desert/dungball.png"
+dest_files=["res://.godot/imported/dungball.png-41e665728666a8be775b3b9f0d3c4f69.ctex"]
 
 [params]
 

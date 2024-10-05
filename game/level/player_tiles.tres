@@ -1,0 +1,11 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cnd8rxrdk1f2m"]
+
+[ext_resource type="PackedScene" uid="uid://bh2o7d54e4a2i" path="res://game/critter/player/beetle.tscn" id="1_xustv"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1djhw"]
+resource_name = "players"
+scenes/1001/scene = ExtResource("1_xustv")
+
+[resource]
+tile_size = Vector2i(1, 1)
+sources/1000 = SubResource("TileSetScenesCollectionSource_1djhw")

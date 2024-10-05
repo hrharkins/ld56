@@ -1,19 +1,18 @@
-# meta-default: true
 # Copyright (c) 2024 Rich Harkins.  All Rights Reserved.
-extends _BASE_
-class_name LD56_CLASS_
+extends Node
+class_name LD56DirectionFromMovement
 
-## Purpose of this script.
-##
-## Desription of this script.
-## See https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_documentation_comments.html#bbcode-and-class-reference
+## Provides fluid facing by movement "direction".
 
 #############################################################################
 # Public Interface
 #############################################################################
 
-## Description of export
-#@export var myexport := 0
+## Moveable (critter usually) to manage facing of
+@export var moveable : LD56Critter
+
+## Max rate of rotation (in turns/sec).  1 = facing change in 1/4 second.
+@export var rotation_rate := 4.0
 
 ## Description of signal
 #signal mysignal()
@@ -28,15 +27,16 @@ class_name LD56_CLASS_
 #func constructor():
 	#pass
 	
-#func _ready() -> void:
-	#pass
+func _ready() -> void:
+	if moveable == null:
+		push_warning("No moveable configured for %s" % self)
 
 #############################################################################
 # Private/protected members, methods, and inner classes.
 #############################################################################
 
-## Purpose of member
-#var _local := 0.0
+## Direction moving toward
+var _toward := 0.0
 
 ## Purpose of method
 #func method() -> void:
@@ -54,8 +54,20 @@ class_name LD56_CLASS_
 	#pass
 
 func _physics_process(_delta: float) -> void:
-	move_and_slide()
+	if moveable != null:
+		var movement := moveable.movement
+		if movement != Vector2.ZERO:
+			# The angle we get seems to be 90 degrees offset from the 
+			# angfle acquired by the motion vector.  Also, the desird
+			# angle needs to be expressed in -PI - PI terms or spinning
+			# happens with move_toward() below.
+			_toward = movement.angle() + PI/2
+			if _toward >= PI:
+				_toward -= PI * 2
+
+	var facing := moveable.rotation
+	if facing != _toward:
+		moveable.rotation = move_toward(facing, _toward, rotation_rate * PI * _delta)
 
 #func _input(event: InputEvent) -> void:
 	#pass
-	

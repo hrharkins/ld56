@@ -1,7 +1,7 @@
 # meta-default: true
 # Copyright (c) 2024 Rich Harkins.  All Rights Reserved.
 extends _BASE_
-class_name _CLASS_
+class_name LD56_CLASS_
 
 ## Purpose of this script.
 ##
@@ -16,7 +16,7 @@ class_name _CLASS_
 #@export var myexport := 0
 
 ## Description of signal
-#@signal signal mysignal()
+#signal mysignal()
 
 ## Purpose of variable
 #var myvar := 0.0
@@ -50,10 +50,10 @@ class_name _CLASS_
 # Event processing, signal handlers
 #############################################################################
 
-#func _process(delta: float) -> void:
+#func _process(_delta: float) -> void:
 	#pass
 
-#func _physics_process(delta: float) -> void:
+#func _physics_process(_delta: float) -> void:
 	#pass
 
 #func _input(event: InputEvent) -> void:

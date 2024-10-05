@@ -1,7 +1,6 @@
-# meta-default: true
 # Copyright (c) 2024 Rich Harkins.  All Rights Reserved.
-extends _BASE_
-class_name LD56_CLASS_
+extends CharacterBody2D
+class_name LD56Critter
 
 ## Purpose of this script.
 ##
@@ -12,20 +11,23 @@ class_name LD56_CLASS_
 # Public Interface
 #############################################################################
 
-## Description of export
-#@export var myexport := 0
+## Speed factor for beetle.  Unit is in tiles/sec.
+@export var base_speed := 1.0
 
 ## Description of signal
-#signal mysignal()
+#@signal signal mysignal()
 
-## Purpose of variable
-#var myvar := 0.0
+## Current desired movement cirection
+var movement := Vector2.ZERO
 
 #############################################################################
 # Initialization
 #############################################################################
 
 #func constructor():
+	#pass
+
+#func _ready() -> void:
 	#pass
 
 #############################################################################
@@ -35,10 +37,25 @@ class_name LD56_CLASS_
 ## Purpose of member
 #var _local := 0.0
 
-## Purpose of method
-#func method() -> void:
-	#pass
-
+## Begin movement.  Limited by physics for this critter.
+func move(dir: Vector2) -> void:
+	movement = dir
+	
 ## Purpose of inner class
 #class MyClass:
+	#pass
+
+#############################################################################
+# Event processing, signal handlers
+#############################################################################
+
+#func _process(delta: float) -> void:
+	#pass
+
+func _physics_process(_delta: float) -> void:
+	var speed := base_speed / _delta
+	velocity = movement * speed
+	move_and_slide()
+
+#func _input(event: InputEvent) -> void:
 	#pass

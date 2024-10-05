@@ -1,25 +1,21 @@
-# meta-default: true
 # Copyright (c) 2024 Rich Harkins.  All Rights Reserved.
-extends _BASE_
-class_name LD56_CLASS_
+extends LD56Critter
+class_name LD56Beetle
 
-## Purpose of this script.
-##
-## Desription of this script.
-## See https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_documentation_comments.html#bbcode-and-class-reference
+## Represents the player.
 
 #############################################################################
 # Public Interface
 #############################################################################
 
-## Description of export
-#@export var myexport := 0
+## Node that will carry dung
+@export var dung_carrier_node : Node
 
 ## Description of signal
 #signal mysignal()
 
-## Purpose of variable
-#var myvar := 0.0
+## Current dungball in mandables or null if one isn't there.
+var dungball : LD56Dungball
 
 #############################################################################
 # Initialization
@@ -38,9 +34,15 @@ class_name LD56_CLASS_
 ## Purpose of member
 #var _local := 0.0
 
-## Purpose of method
-#func method() -> void:
-	#pass
+## Try to incorporate a new dungball into the current one, grabbing the new
+## one if we don't have one already.
+func integrate_dung(dung: LD56Dungball) -> void:
+	if dungball == null:
+		dung.reparent(self.dung_carrier_node)
+		dung.owner = self
+		dungball = dung
+	elif dungball.add_dung(dung):
+		dung.get_parent().remove_child(dung)
 
 ## Purpose of inner class
 #class MyClass:
@@ -54,8 +56,11 @@ class_name LD56_CLASS_
 	#pass
 
 func _physics_process(_delta: float) -> void:
-	move_and_slide()
+	super(_delta)
 
 #func _input(event: InputEvent) -> void:
 	#pass
 	
+func _on_item_sense_area_entered(area: Area2D) -> void:
+	if area is LD56Dungball:
+		call_deferred("integrate_dung", area)

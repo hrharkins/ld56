@@ -1,6 +1,6 @@
 # Copyright (c) 2024 Rich Harkins.  All Rights Reserved.
-extends Node
-class_name BeetleInput
+extends Resource
+class_name LD56InputConfig
 
 ## Purpose of this script.
 ##
@@ -12,7 +12,10 @@ class_name BeetleInput
 #############################################################################
 
 ## Description of export
-@export var up_input := "ui_up"
+@export var up := "ui_up"
+@export var down := "ui_down"
+@export var left := "ui_left"
+@export var right := "ui_right"
 
 ## Description of signal
 #@signal signal mysignal()
@@ -25,9 +28,6 @@ class_name BeetleInput
 #############################################################################
 
 #func constructor():
-	#pass
-	
-#func _ready() -> void:
 	#pass
 
 #############################################################################
@@ -43,18 +43,4 @@ class_name BeetleInput
 
 ## Purpose of inner class
 #class MyClass:
-	#pass
-
-#############################################################################
-# Event processing, signal handlers
-#############################################################################
-
-#func _process(delta: float) -> void:
-	#pass
-
-func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed(up_input):
-		print_debug("here")
-
-#func _input(event: InputEvent) -> void:
 	#pass

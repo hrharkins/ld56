@@ -1,7 +1,7 @@
 # meta-default: true
 # Copyright (c) 2024 Rich Harkins.  All Rights Reserved.
 extends _BASE_
-class_name LD56_CLASS_
+class_name LD56_CLASS_)
 
 ## Purpose of this script.
 ##
@@ -27,6 +27,9 @@ class_name LD56_CLASS_
 
 #func constructor():
 	#pass
+	
+#func _ready() -> void:
+	#pass
 
 #############################################################################
 # Private/protected members, methods, and inner classes.
@@ -42,3 +45,17 @@ class_name LD56_CLASS_
 ## Purpose of inner class
 #class MyClass:
 	#pass
+
+#############################################################################
+# Event processing, signal handlers
+#############################################################################
+
+#func _process(_delta: float) -> void:
+	#pass
+
+#func _physics_process(_delta: float) -> void:
+	#super(_delta)
+
+#func _input(event: InputEvent) -> void:
+	#pass
+	

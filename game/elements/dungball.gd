@@ -1,7 +1,6 @@
-# meta-default: true
 # Copyright (c) 2024 Rich Harkins.  All Rights Reserved.
-extends _BASE_
-class_name LD56_CLASS_
+extends Area2D
+class_name LD56Dungball
 
 ## Purpose of this script.
 ##
@@ -12,8 +11,17 @@ class_name LD56_CLASS_
 # Public Interface
 #############################################################################
 
-## Description of export
-#@export var myexport := 0
+## Size of this dungball.
+@export var size := 1
+
+## Maximum size of dungball.
+@export var max_size := 32
+
+## Ratio of max size for minmum sized dungball
+@export var min_scale_ratio := 2.0
+
+## Size of "full grown" dungball (aspect ratio 1.0 assumed)
+@export var full_scale := 0.5
 
 ## Description of signal
 #signal mysignal()
@@ -35,12 +43,33 @@ class_name LD56_CLASS_
 # Private/protected members, methods, and inner classes.
 #############################################################################
 
-## Purpose of member
-#var _local := 0.0
+## Last size of dungbal prior to rescale
+var _last_size := 0
 
-## Purpose of method
-#func method() -> void:
-	#pass
+## Returns scale based on size and full size scale.
+static func scale_dungball(
+	_size: int, 
+	_max_size: int, 
+	_min_scale: float, 
+	_full_scale: float) -> float:
+	
+	var scale_range := _full_scale - _min_scale
+	return _min_scale + scale_range * (_size * 1.0 / _max_size)
+	
+## Rescales this dungball.
+func rescale():
+	var min_scale := full_scale / min_scale_ratio
+	var dung_scale := scale_dungball(size, max_size, min_scale, full_scale)
+	scale = Vector2(dung_scale, dung_scale)
+	
+## Attempts to integrate a dungball into this one by adjusting the sizes.
+func add_dung(other: LD56Dungball) -> bool:
+	var new_size := size + other.size
+	if new_size <= max_size:
+		size = new_size
+		return true
+	else:
+		return false
 
 ## Purpose of inner class
 #class MyClass:
@@ -54,8 +83,10 @@ class_name LD56_CLASS_
 	#pass
 
 func _physics_process(_delta: float) -> void:
-	move_and_slide()
+	# Rescale the dungball if needed.
+	if size != _last_size:
+		_last_size = size
+		rescale()
 
 #func _input(event: InputEvent) -> void:
 	#pass
-	
