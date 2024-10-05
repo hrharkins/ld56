@@ -1,4 +1,5 @@
 # meta-default: true
+# Copyright (c) 2024 Rich Harkins.  All Rights Reserved.
 extends _BASE_
 class_name _CLASS_
 
@@ -57,3 +58,4 @@ func _physics_process(delta: float) -> void:
 
 #func _input(event: InputEvent) -> void:
 	#pass
+	

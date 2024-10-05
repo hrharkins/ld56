@@ -1,7 +1,6 @@
-# meta-default: true
 # Copyright (c) 2024 Rich Harkins.  All Rights Reserved.
-extends _BASE_
-class_name _CLASS_
+extends CharacterBody2D
+class_name Beetle
 
 ## Purpose of this script.
 ##
@@ -27,6 +26,9 @@ class_name _CLASS_
 
 #func constructor():
 	#pass
+	
+#func _ready() -> void:
+	#pass
 
 #############################################################################
 # Private/protected members, methods, and inner classes.
@@ -43,4 +45,16 @@ class_name _CLASS_
 #class MyClass:
 	#pass
 
-Resource
+#############################################################################
+# Event processing, signal handlers
+#############################################################################
+
+#func _process(delta: float) -> void:
+	#pass
+
+func _physics_process(delta: float) -> void:
+	move_and_slide()
+
+#func _input(event: InputEvent) -> void:
+	#pass
+	

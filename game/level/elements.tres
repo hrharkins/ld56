@@ -1,0 +1,11 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://vgqq1ix85ekn"]
+
+[ext_resource type="PackedScene" uid="uid://dogudbc6a0xp3" path="res://game/player/beetle.tscn" id="1_didfs"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_4r3sw"]
+resource_name = "Player"
+scenes/1/scene = ExtResource("1_didfs")
+
+[resource]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetScenesCollectionSource_4r3sw")

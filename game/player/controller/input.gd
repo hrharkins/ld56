@@ -1,7 +1,6 @@
-# meta-default: true
 # Copyright (c) 2024 Rich Harkins.  All Rights Reserved.
-extends _BASE_
-class_name _CLASS_
+extends Node
+class_name BeetleInput
 
 ## Purpose of this script.
 ##
@@ -13,7 +12,7 @@ class_name _CLASS_
 #############################################################################
 
 ## Description of export
-#@export var myexport := 0
+@export var up_input := "ui_up"
 
 ## Description of signal
 #@signal signal mysignal()
@@ -26,6 +25,9 @@ class_name _CLASS_
 #############################################################################
 
 #func constructor():
+	#pass
+	
+#func _ready() -> void:
 	#pass
 
 #############################################################################
@@ -43,4 +45,16 @@ class_name _CLASS_
 #class MyClass:
 	#pass
 
-Resource
+#############################################################################
+# Event processing, signal handlers
+#############################################################################
+
+#func _process(delta: float) -> void:
+	#pass
+
+func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed(up_input):
+		print_debug("here")
+
+#func _input(event: InputEvent) -> void:
+	#pass

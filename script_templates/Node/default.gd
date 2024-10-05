@@ -1,4 +1,5 @@
 # meta-default: true
+# Copyright (c) 2024 Rich Harkins.  All Rights Reserved.
 extends _BASE_
 class_name _CLASS_
 
