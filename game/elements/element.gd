@@ -1,7 +1,6 @@
-# meta-default: true
 # Copyright (c) 2024 Rich Harkins.  All Rights Reserved.
-extends _BASE_
-class_name LD56_CLASS_)
+extends Area2D
+class_name LD56Element
 
 ## Purpose of this script.
 ##
@@ -45,11 +44,6 @@ class_name LD56_CLASS_)
 ## Purpose of inner class
 #class MyClass:
 	#pass
-	
-## Overload to adjust speed stat
-#func get_speed() -> float:
-	#var speed := super()
-	#return speed
 
 #############################################################################
 # Event processing, signal handlers
@@ -59,8 +53,7 @@ class_name LD56_CLASS_)
 	#pass
 
 #func _physics_process(_delta: float) -> void:
-	#super(_delta)
+	#pass
 
 #func _input(event: InputEvent) -> void:
 	#pass
-	

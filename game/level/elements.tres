@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://vgqq1ix85ekn"]
 
-[ext_resource type="PackedScene" uid="uid://bv6bgamv3mu47" path="res://game/elements/dungball.tscn" id="2_cy4xq"]
+[ext_resource type="PackedScene" uid="uid://blgjyrrfm5hn3" path="res://game/elements/dung/dungball.tscn" id="2_cy4xq"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_tgund"]
 resource_name = "items"

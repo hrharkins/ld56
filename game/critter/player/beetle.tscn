@@ -6,7 +6,7 @@
 [ext_resource type="SpriteFrames" uid="uid://655oi03ufq4" path="res://assets/critters/beetle/bodyfeet.tres" id="3_fuwe5"]
 [ext_resource type="Texture2D" uid="uid://tw6dr1uik0d3" path="res://assets/critters/beetle/head.png" id="4_kjodj"]
 [ext_resource type="Script" path="res://game/critter/controller/direction_from_movement.gd" id="5_3uiny"]
-[ext_resource type="PackedScene" uid="uid://bv6bgamv3mu47" path="res://game/elements/dungball.tscn" id="7_srukg"]
+[ext_resource type="PackedScene" uid="uid://blgjyrrfm5hn3" path="res://game/elements/dung/dungball.tscn" id="7_srukg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mhyxh"]
 animations = [{
@@ -27,6 +27,8 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_kv16y")
 dung_carrier_node = NodePath("Item Sense")
+fully_laden_pct = 60.0
+base_speed = 3.0
 
 [node name="BodyFeet" type="AnimatedSprite2D" parent="Skin" index="0"]
 sprite_frames = ExtResource("3_fuwe5")

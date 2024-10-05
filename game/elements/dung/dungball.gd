@@ -1,5 +1,5 @@
 # Copyright (c) 2024 Rich Harkins.  All Rights Reserved.
-extends Area2D
+extends LD56Element
 class_name LD56Dungball
 
 ## Purpose of this script.

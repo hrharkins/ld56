@@ -11,6 +11,9 @@ class_name LD56Beetle
 ## Node that will carry dung
 @export var dung_carrier_node : Node
 
+## Percent impact to speed when fully laden
+@export var fully_laden_pct := 60.0
+
 ## Description of signal
 #signal mysignal()
 
@@ -43,7 +46,18 @@ func integrate_dung(dung: LD56Dungball) -> void:
 		dungball = dung
 	elif dungball.add_dung(dung):
 		dung.get_parent().remove_child(dung)
-
+		
+# Computes the beetle's current speed.
+func get_speed() -> float:
+	var _speed := super()
+	if dungball != null:
+		_speed *= 1.0 - (
+			(fully_laden_pct / 100.0) 
+			* (dungball.size * 1.0 / dungball.max_size)
+		)
+	print_debug(_speed)
+	return _speed
+	
 ## Purpose of inner class
 #class MyClass:
 	#pass

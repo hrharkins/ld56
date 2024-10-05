@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://osuv201rid7l"
-path="res://.godot/imported/tiles.png-6210dc1999f2fe0fa5bc87132ea6f658.ctex"
+uid="uid://ccf2liunvaj8j"
+path="res://.godot/imported/hole.png-e0afb49b8367ea1064fbc4aee40049ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/desert/tiles.png"
-dest_files=["res://.godot/imported/tiles.png-6210dc1999f2fe0fa5bc87132ea6f658.ctex"]
+source_file="res://assets/tiles/desert/hole.png"
+dest_files=["res://.godot/imported/hole.png-e0afb49b8367ea1064fbc4aee40049ea.ctex"]
 
 [params]
 

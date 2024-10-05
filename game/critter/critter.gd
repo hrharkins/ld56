@@ -20,6 +20,9 @@ class_name LD56Critter
 ## Current desired movement cirection
 var movement := Vector2.ZERO
 
+## Speed after computation -- readonly
+var speed : float : get=get_speed
+
 #############################################################################
 # Initialization
 #############################################################################
@@ -41,6 +44,10 @@ var movement := Vector2.ZERO
 func move(dir: Vector2) -> void:
 	movement = dir
 	
+## Virtual function to get the speed of the critter.
+func get_speed() -> float:
+	return base_speed
+
 ## Purpose of inner class
 #class MyClass:
 	#pass
@@ -53,8 +60,8 @@ func move(dir: Vector2) -> void:
 	#pass
 
 func _physics_process(_delta: float) -> void:
-	var speed := base_speed / _delta
-	velocity = movement * speed
+	var _speed := speed / _delta
+	velocity = movement * _speed
 	move_and_slide()
 
 #func _input(event: InputEvent) -> void:

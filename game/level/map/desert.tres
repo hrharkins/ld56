@@ -1,13 +1,17 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cqduyhw7mtb2n"]
 
-[ext_resource type="Texture2D" uid="uid://bdf5pttqteloy" path="res://assets/tiles/desert/tiles.png" id="1_am83r"]
+[ext_resource type="Texture2D" uid="uid://osuv201rid7l" path="res://assets/tiles/desert/tiles.png" id="1_w0kav"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3svht"]
-texture = ExtResource("1_am83r")
+texture = ExtResource("1_w0kav")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 0:1/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [resource]
 tile_size = Vector2i(32, 32)
