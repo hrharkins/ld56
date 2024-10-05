@@ -4,6 +4,11 @@ class_name LD56DirectionFromMovement
 
 ## Provides fluid facing by movement "direction".
 
+static func find_from(node: Node) -> LD56DirectionFromMovement:
+	return (
+		LD56Ancestry.find_ancestor_of(node, LD56DirectionFromMovement)
+	) as LD56DirectionFromMovement
+
 #############################################################################
 # Public Interface
 #############################################################################

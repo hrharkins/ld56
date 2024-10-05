@@ -1,7 +1,6 @@
-# meta-default: true
 # Copyright (c) 2024 Rich Harkins.  All Rights Reserved.
-extends _BASE_
-class_name LD56_CLASS_)
+extends VBoxContainer
+class_name LD56StatusOverlay
 
 ## Purpose of this script.
 ##
@@ -9,10 +8,10 @@ class_name LD56_CLASS_)
 ## See https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_documentation_comments.html#bbcode-and-class-reference
 
 ## Locates this class in the node tree based on a descendant.
-static func find_from(node: Node) -> LD56_CLASS_:
+static func find_from(node: Node) -> LD56StatusOverlay:
 	return (
-		LD56Ancestry.find_ancestor_of(node, LD56_CLASS_)
-	) as LD56_CLASS_
+		LD56Ancestry.find_ancestor_of(node, LD56StatusOverlay)
+	) as LD56StatusOverlay
 
 #############################################################################
 # Public Interface
@@ -26,6 +25,7 @@ static func find_from(node: Node) -> LD56_CLASS_:
 
 ## Purpose of variable
 #var myvar := 0.0
+
 
 #############################################################################
 # Initialization
@@ -51,11 +51,6 @@ static func find_from(node: Node) -> LD56_CLASS_:
 ## Purpose of inner class
 #class MyClass:
 	#pass
-	
-## Overload to adjust speed stat
-#func get_speed() -> float:
-	#var speed := super()
-	#return speed
 
 #############################################################################
 # Event processing, signal handlers
@@ -65,8 +60,7 @@ static func find_from(node: Node) -> LD56_CLASS_:
 	#pass
 
 #func _physics_process(_delta: float) -> void:
-	#super(_delta)
+	#pass
 
 #func _input(event: InputEvent) -> void:
 	#pass
-	

@@ -1,11 +1,17 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://vgqq1ix85ekn"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://vgqq1ix85ekn"]
 
 [ext_resource type="PackedScene" uid="uid://blgjyrrfm5hn3" path="res://game/elements/dung/dungball.tscn" id="2_cy4xq"]
+[ext_resource type="PackedScene" uid="uid://bbid48ddywqkj" path="res://game/elements/hole/hole.tscn" id="2_rf05e"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_tgund"]
 resource_name = "items"
 scenes/1/scene = ExtResource("2_cy4xq")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_tdd3x"]
+resource_name = "structure"
+scenes/3001/scene = ExtResource("2_rf05e")
+
 [resource]
 tile_size = Vector2i(1, 1)
 sources/2000 = SubResource("TileSetScenesCollectionSource_tgund")
+sources/3000 = SubResource("TileSetScenesCollectionSource_tdd3x")

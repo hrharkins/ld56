@@ -7,6 +7,11 @@ class_name LD56Dungball
 ## Desription of this script.
 ## See https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_documentation_comments.html#bbcode-and-class-reference
 
+static func find_from(node: Node) -> LD56Dungball:
+	return (
+		LD56Ancestry.find_ancestor_of(node, LD56Dungball)
+	) as LD56Dungball
+
 #############################################################################
 # Public Interface
 #############################################################################
@@ -70,6 +75,13 @@ func add_dung(other: LD56Dungball) -> bool:
 		return true
 	else:
 		return false
+		
+## Delegates interaction with beetle's dungball.  
+## 
+## The beetle side needs to do the heavy lifting here.
+func interact_with_beetle_ball(beetle: LD56Beetle) -> void:
+	super(beetle)
+	beetle.integrate_dung(self)
 
 ## Purpose of inner class
 #class MyClass:

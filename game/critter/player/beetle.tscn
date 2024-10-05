@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://game/critter/player/controller/input.gd" id="2_ja5af"]
 [ext_resource type="SpriteFrames" uid="uid://655oi03ufq4" path="res://assets/critters/beetle/bodyfeet.tres" id="3_fuwe5"]
 [ext_resource type="Texture2D" uid="uid://tw6dr1uik0d3" path="res://assets/critters/beetle/head.png" id="4_kjodj"]
+[ext_resource type="Script" path="res://game/critter/player/body_feet.gd" id="4_onqkg"]
 [ext_resource type="Script" path="res://game/critter/controller/direction_from_movement.gd" id="5_3uiny"]
-[ext_resource type="PackedScene" uid="uid://blgjyrrfm5hn3" path="res://game/elements/dung/dungball.tscn" id="7_srukg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mhyxh"]
 animations = [{
@@ -32,6 +32,7 @@ base_speed = 3.0
 
 [node name="BodyFeet" type="AnimatedSprite2D" parent="Skin" index="0"]
 sprite_frames = ExtResource("3_fuwe5")
+script = ExtResource("4_onqkg")
 
 [node name="Head" type="AnimatedSprite2D" parent="Skin" index="1"]
 sprite_frames = SubResource("SpriteFrames_mhyxh")
@@ -51,8 +52,7 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Item Sense" index="0"]
 shape = SubResource("CircleShape2D_m4uyd")
 
-[node name="Dungball" parent="Item Sense" index="1" instance=ExtResource("7_srukg")]
-size = 0
-
+[connection signal="started_moving" from="." to="Skin/BodyFeet" method="_on_beetle_started_moving"]
+[connection signal="stopped_moving" from="." to="Skin/BodyFeet" method="_on_beetle_stopped_moving"]
 [connection signal="movement" from="Player Input" to="." method="move"]
 [connection signal="area_entered" from="Item Sense" to="." method="_on_item_sense_area_entered"]

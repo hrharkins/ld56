@@ -8,6 +8,12 @@ class_name LD56_CLASS_
 ## Desription of this script.
 ## See https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_documentation_comments.html#bbcode-and-class-reference
 
+## Locates this class in the node tree based on a descendant.
+static func find_from(node: Node) -> LD56_CLASS_:
+	return (
+		LD56Ancestry.find_ancestor_of(node, LD56_CLASS_)
+	) as LD56_CLASS_
+
 #############################################################################
 # Public Interface
 #############################################################################

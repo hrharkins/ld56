@@ -7,6 +7,11 @@ class_name LD56Critter
 ## Desription of this script.
 ## See https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_documentation_comments.html#bbcode-and-class-reference
 
+static func find_from(node: Node) -> LD56Critter:
+	return (
+		LD56Ancestry.find_ancestor_of(node, LD56Critter)
+	) as LD56Critter
+
 #############################################################################
 # Public Interface
 #############################################################################
@@ -14,8 +19,11 @@ class_name LD56Critter
 ## Speed factor for beetle.  Unit is in tiles/sec.
 @export var base_speed := 1.0
 
-## Description of signal
-#@signal signal mysignal()
+## Signalled when critter starts moving
+signal started_moving(critter: LD56Critter)
+
+## Signalled when critter stops moving
+signal stopped_moving(critter: LD56Critter)
 
 ## Current desired movement cirection
 var movement := Vector2.ZERO
@@ -37,8 +45,8 @@ var speed : float : get=get_speed
 # Private/protected members, methods, and inner classes.
 #############################################################################
 
-## Purpose of member
-#var _local := 0.0
+## Tracks if we were moving at the lastest physics updated
+var _was_moving := false
 
 ## Begin movement.  Limited by physics for this critter.
 func move(dir: Vector2) -> void:
@@ -62,6 +70,13 @@ func get_speed() -> float:
 func _physics_process(_delta: float) -> void:
 	var _speed := speed / _delta
 	velocity = movement * _speed
+	var now_moving := velocity.length() > 0
+	if now_moving != _was_moving:
+		_was_moving = now_moving
+		if now_moving:
+			started_moving.emit(self)
+		else:
+			stopped_moving.emit(self)
 	move_and_slide()
 
 #func _input(event: InputEvent) -> void:

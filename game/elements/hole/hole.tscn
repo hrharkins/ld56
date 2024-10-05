@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbid48ddywqkj"]
+
+[ext_resource type="PackedScene" uid="uid://cxn2evom3lquv" path="res://game/elements/element.tscn" id="1_8vf33"]
+[ext_resource type="Texture2D" uid="uid://ccf2liunvaj8j" path="res://assets/tiles/desert/hole.png" id="2_8tc6c"]
+[ext_resource type="Script" path="res://game/elements/hole/hole.gd" id="2_qdmh2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lg462"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8tc6c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Element" instance=ExtResource("1_8vf33")]
+script = ExtResource("2_qdmh2")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_lg462")

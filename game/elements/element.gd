@@ -7,6 +7,11 @@ class_name LD56Element
 ## Desription of this script.
 ## See https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_documentation_comments.html#bbcode-and-class-reference
 
+static func find_from(node: Node) -> LD56Element:
+	return (
+		LD56Ancestry.find_ancestor_of(node, LD56Element)
+	) as LD56Element
+
 #############################################################################
 # Public Interface
 #############################################################################
@@ -37,9 +42,9 @@ class_name LD56Element
 ## Purpose of member
 #var _local := 0.0
 
-## Purpose of method
-#func method() -> void:
-	#pass
+## Called when player's item area interactw with this element.
+func interact_with_beetle_ball(_beetle: LD56Beetle) -> void:
+	pass
 
 ## Purpose of inner class
 #class MyClass:
