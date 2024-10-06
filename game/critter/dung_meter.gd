@@ -54,9 +54,9 @@ func _ready() -> void:
 #var _local := 0.0
 
 ## Updates the score label.
-func update_dung_carried(dung: int, max: int, points: int) -> void:
+func update_dung_carried(dung: int, max_dung: int, points: int) -> void:
 	progressbar.value = dung
-	progressbar.max_value = max
+	progressbar.max_value = max_dung
 	size_label.text = "%d" % dung
 	points_label.text = "%d Pts" % points
 

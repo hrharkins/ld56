@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://blgjyrrfm5hn3"]
+[gd_scene load_steps=5 format=3 uid="uid://blgjyrrfm5hn3"]
 
 [ext_resource type="Texture2D" uid="uid://cotlo1ghay4ps" path="res://assets/tiles/desert/dungball.png" id="1_i7y3f"]
 [ext_resource type="PackedScene" uid="uid://cxn2evom3lquv" path="res://game/elements/element.tscn" id="1_ux0mj"]
+[ext_resource type="Script" path="res://game/elements/trigger.gd" id="3_eq57d"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_st0kr"]
 animations = [{
@@ -17,7 +18,8 @@ animations = [{
 [node name="Dungball" instance=ExtResource("1_ux0mj")]
 scale = Vector2(0.25, 0.25)
 
-[node name="AnimatedSprite2D" parent="." index="1"]
+[node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_st0kr")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="LD56Trigger" type="Area2D" parent="." index="1"]
+script = ExtResource("3_eq57d")

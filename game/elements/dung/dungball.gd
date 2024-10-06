@@ -75,7 +75,7 @@ func add_dung(other: LD56Dungball) -> bool:
 		return true
 	else:
 		return false
-		
+
 ## Delegates interaction with beetle's dungball.  
 ## 
 ## The beetle side needs to do the heavy lifting here.

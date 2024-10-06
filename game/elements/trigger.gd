@@ -1,30 +1,30 @@
 # Copyright (c) 2024 Rich Harkins.  All Rights Reserved.
-extends Object
-class_name LD56Ancestry
+extends Area2D
+class_name LD56Trigger
 
 ## Purpose of this script.
 ##
 ## Desription of this script.
 ## See https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_documentation_comments.html#bbcode-and-class-reference
 
+## Locates this class in the node tree based on a descendant.
+static func find_from(node: Node) -> LD56Trigger:
+	return (
+		LD56Ancestry.find_ancestor_of(node, LD56Trigger)
+	) as LD56Trigger
+
 #############################################################################
 # Public Interface
 #############################################################################
 
-## Description of export
-#@export var myexport := 0
+## Node that receives the method call.
+@export var type : Script
 
 ## Description of signal
-#signal mysignal()
+signal triggered(source)
 
 ## Purpose of variable
 #var myvar := 0.0
-
-## Returns an ancestor based on a parent type.
-static func find_ancestor_of(descendant: Node, type: Variant) -> Variant:
-	while descendant != null and not is_instance_of(descendant, type):
-		descendant = descendant.get_parent()
-	return descendant
 
 
 #############################################################################
@@ -33,6 +33,10 @@ static func find_ancestor_of(descendant: Node, type: Variant) -> Variant:
 
 #func constructor():
 	#pass
+	
+func _ready() -> void:
+	area_entered.connect(_on_collision)
+	body_entered.connect(_on_collision)
 
 #############################################################################
 # Private/protected members, methods, and inner classes.
@@ -42,9 +46,23 @@ static func find_ancestor_of(descendant: Node, type: Variant) -> Variant:
 #var _local := 0.0
 
 ## Purpose of method
-#func method() -> void:
-	#pass
+func _on_collision(other) -> void:
+	if is_instance_of(other, type):
+		triggered.emit(other)
 
 ## Purpose of inner class
 #class MyClass:
+	#pass
+
+#############################################################################
+# Event processing, signal handlers
+#############################################################################
+
+#func _process(_delta: float) -> void:
+	#pass
+
+#func _physics_process(_delta: float) -> void:
+	#pass
+
+#func _input(event: InputEvent) -> void:
 	#pass

@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://tw6dr1uik0d3" path="res://assets/critters/beetle/head.png" id="4_kjodj"]
 [ext_resource type="Script" path="res://game/critter/player/body_feet.gd" id="4_onqkg"]
 [ext_resource type="Script" path="res://game/critter/controller/direction_from_movement.gd" id="5_3uiny"]
+[ext_resource type="Script" path="res://game/critter/controller/sensor.gd" id="8_unh7u"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mhyxh"]
 animations = [{
@@ -20,16 +21,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m4uyd"]
-radius = 0.1
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_khisy"]
-radius = 0.1
+radius = 0.05
 
 [node name="Beetle" node_paths=PackedStringArray("dung_carrier_node") instance=ExtResource("1_ktovw")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_kv16y")
-dung_carrier_node = NodePath("Item Sense")
+dung_carrier_node = NodePath("Item Sensor")
 fully_laden_pct = 60.0
 base_speed = 3.0
 
@@ -47,25 +45,28 @@ script = ExtResource("2_ja5af")
 script = ExtResource("5_3uiny")
 moveable = NodePath("..")
 
-[node name="Item Sense" type="Area2D" parent="." index="4"]
+[node name="Item Sensor" type="Area2D" parent="." index="4" node_paths=PackedStringArray("source")]
 position = Vector2(0, -0.5)
 collision_layer = 0
 collision_mask = 4
+script = ExtResource("8_unh7u")
+method = "interact_with_beetle_ball"
+source = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Item Sense" index="0"]
+[node name="Collider" type="CollisionShape2D" parent="Item Sensor" index="0"]
 shape = SubResource("CircleShape2D_m4uyd")
 
-[node name="Mouth Sense" type="Area2D" parent="." index="5"]
-position = Vector2(0, -0.2)
+[node name="Mouth Sensor" type="Area2D" parent="." index="5" node_paths=PackedStringArray("source")]
 collision_layer = 0
 collision_mask = 4
+script = ExtResource("8_unh7u")
+method = "interact_with_beetle_mouth"
+source = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mouth Sense" index="0"]
-shape = SubResource("CircleShape2D_khisy")
+[node name="Collider" type="CollisionShape2D" parent="Mouth Sensor" index="0"]
+shape = SubResource("CircleShape2D_m4uyd")
 
 [connection signal="started_moving" from="." to="Skin/BodyFeet" method="_on_beetle_started_moving"]
 [connection signal="stopped_moving" from="." to="Skin/BodyFeet" method="_on_beetle_stopped_moving"]
 [connection signal="action" from="Player Input" to="." method="release_ball"]
 [connection signal="movement" from="Player Input" to="." method="move"]
-[connection signal="area_entered" from="Item Sense" to="." method="_on_item_sense_area_entered"]
-[connection signal="area_entered" from="Mouth Sense" to="." method="_on_mouth_sense_area_entered"]
