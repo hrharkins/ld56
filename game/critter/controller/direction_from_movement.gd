@@ -1,5 +1,5 @@
 # Copyright (c) 2024 Rich Harkins.  All Rights Reserved.
-extends Node
+extends LD56CritterController
 class_name LD56DirectionFromMovement
 
 ## Provides fluid facing by movement "direction".
@@ -12,9 +12,6 @@ static func find_from(node: Node) -> LD56DirectionFromMovement:
 #############################################################################
 # Public Interface
 #############################################################################
-
-## Moveable (critter usually) to manage facing of
-@export var moveable : LD56Critter
 
 ## Max rate of rotation (in turns/sec).  1 = facing change in 1/4 second.
 @export var rotation_rate := 4.0
@@ -33,7 +30,7 @@ static func find_from(node: Node) -> LD56DirectionFromMovement:
 	#pass
 	
 func _ready() -> void:
-	if moveable == null:
+	if critter == null:
 		push_warning("No moveable configured for %s" % self)
 
 #############################################################################
@@ -59,8 +56,8 @@ var _toward := 0.0
 	#pass
 
 func _physics_process(_delta: float) -> void:
-	if moveable != null:
-		var movement := moveable.movement
+	if critter != null:
+		var movement := critter.movement
 		if movement != Vector2.ZERO:
 			# The angle we get seems to be 90 degrees offset from the 
 			# angfle acquired by the motion vector.  Also, the desird
@@ -70,9 +67,9 @@ func _physics_process(_delta: float) -> void:
 			if _toward >= PI:
 				_toward -= PI * 2
 
-	var facing := moveable.rotation
-	if facing != _toward:
-		moveable.rotation = move_toward(facing, _toward, rotation_rate * PI * _delta)
+		var facing := critter.rotation
+		if facing != _toward:
+			critter.rotation = move_toward(facing, _toward, rotation_rate * PI * _delta)
 
 #func _input(event: InputEvent) -> void:
 	#pass

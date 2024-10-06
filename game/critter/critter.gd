@@ -55,6 +55,10 @@ func move(dir: Vector2) -> void:
 ## Virtual function to get the speed of the critter.
 func get_speed() -> float:
 	return base_speed
+	
+## Virtal function to take action on collisions.
+func on_collision():
+	pass
 
 ## Purpose of inner class
 #class MyClass:
@@ -77,7 +81,9 @@ func _physics_process(_delta: float) -> void:
 			started_moving.emit(self)
 		else:
 			stopped_moving.emit(self)
-	move_and_slide()
+			
+	if move_and_slide():
+		on_collision()
 
 #func _input(event: InputEvent) -> void:
 	#pass

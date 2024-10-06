@@ -1,12 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgsa3h88bywiq"]
+[gd_scene load_steps=4 format=3 uid="uid://cgsa3h88bywiq"]
 
-[ext_resource type="PackedScene" uid="uid://k7ao420qbjlp" path="res://debug/level/test.tscn" id="1_m6r7x"]
 [ext_resource type="Script" path="res://ld56.gd" id="1_whsb8"]
 [ext_resource type="PackedScene" uid="uid://bnnvbqh52t4cx" path="res://game/critter/status_overlay.tscn" id="1_x37gw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tpjt6"]
 
-[node name="Ld56" type="Control"]
+[node name="Ld56" type="Control" node_paths=PackedStringArray("game_panel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +13,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_whsb8")
+initial_scene = "res://debug/level/test.tscn"
+scenes = {
+"first_level": NodePath(""),
+"game_over": NodePath(""),
+"splash": NodePath("")
+}
+game_panel = NodePath("Stage")
 
 [node name="Stage" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -23,9 +29,6 @@ offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_tpjt6")
-
-[node name="Level" parent="Stage" instance=ExtResource("1_m6r7x")]
-layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

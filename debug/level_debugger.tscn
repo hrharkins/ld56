@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjji7m208pnmp"]
+
+[ext_resource type="PackedScene" uid="uid://cgsa3h88bywiq" path="res://ld56.tscn" id="1_jk7jv"]
+
+[node name="LD56 DEBUGGER!" instance=ExtResource("1_jk7jv")]
+initial_scene = "res://debug/level/test.tscn"

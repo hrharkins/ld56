@@ -107,6 +107,12 @@ func get_speed() -> float:
 func points_for_dung(size: int, max: int) -> int:
 	return floor(size ** 1.2)
 
+## Called when an enemy captures
+func killed_by(enemy: LD56Enemy):
+	print_debug("KILLED BY: ", enemy)
+	var level := LD56Level.find_from(self)
+	level.player_killed_by(enemy)
+
 ## Purpose of inner class
 #class MyClass:
 	#pass
@@ -132,3 +138,8 @@ func _on_item_sense_area_entered(area: Area2D) -> void:
 func _on_mouth_sense_area_entered(area: Area2D) -> void:
 	if area is LD56Element:
 		area.call_deferred("interact_with_beetle_mouth", self)
+
+
+func _on_enemy_sense_body_entered(body: Node2D) -> void:
+	if body is LD56Enemy:
+		self.killed_by(body)

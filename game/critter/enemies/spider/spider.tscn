@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://be176yudbbf1d"]
+
+[ext_resource type="PackedScene" uid="uid://ioe1n6pdm7kb" path="res://game/critter/enemies/enemy.tscn" id="1_quw3t"]
+[ext_resource type="SpriteFrames" uid="uid://bqgqrrg1v2jbc" path="res://game/critter/enemies/spider/spider.tres" id="2_n3qnq"]
+[ext_resource type="Script" path="res://game/critter/enemies/controller/random_direction.gd" id="3_61vsg"]
+[ext_resource type="Script" path="res://game/critter/controller/repeating_timer.gd" id="4_5xkym"]
+[ext_resource type="Script" path="res://game/critter/controller/on_wall_hit.gd" id="5_gfccv"]
+
+[node name="Spider" instance=ExtResource("1_quw3t")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Skin" index="0"]
+sprite_frames = ExtResource("2_n3qnq")
+frame_progress = 0.505791
+
+[node name="LD56RandomDirection" type="Node" parent="Controllers" index="0"]
+script = ExtResource("3_61vsg")
+
+[node name="LD56RepeatingTimer" type="Node" parent="Controllers/LD56RandomDirection" index="0"]
+script = ExtResource("4_5xkym")
+after = 1.0
+random_after = 4.0
+
+[node name="LD56OnWallHit" type="Node" parent="Controllers/LD56RandomDirection/LD56RepeatingTimer" index="0"]
+script = ExtResource("5_gfccv")
+hysterisis = 1
+
+[connection signal="timeout" from="Controllers/LD56RandomDirection/LD56RepeatingTimer" to="Controllers/LD56RandomDirection" method="pick_direction"]
+[connection signal="wall_hit" from="Controllers/LD56RandomDirection/LD56RepeatingTimer/LD56OnWallHit" to="Controllers/LD56RandomDirection/LD56RepeatingTimer" method="trigger"]

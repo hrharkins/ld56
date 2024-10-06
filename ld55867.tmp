@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgsa3h88bywiq"]
+
+[ext_resource type="Script" path="res://ld56.gd" id="1_whsb8"]
+[ext_resource type="PackedScene" uid="uid://bnnvbqh52t4cx" path="res://game/critter/status_overlay.tscn" id="1_x37gw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tpjt6"]
+
+[node name="Ld56" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_whsb8")
+
+[node name="Stage" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_top = -16.0
+offset_right = 948.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tpjt6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 0
+
+[node name="Overlay" parent="MarginContainer" instance=ExtResource("1_x37gw")]
+layout_mode = 2

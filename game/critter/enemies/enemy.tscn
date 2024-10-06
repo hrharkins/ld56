@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ioe1n6pdm7kb"]
+
+[ext_resource type="PackedScene" uid="uid://dogudbc6a0xp3" path="res://game/critter/critter.tscn" id="1_j0fgv"]
+[ext_resource type="Script" path="res://game/critter/enemies/enemy.gd" id="2_furyp"]
+
+[node name="Enemy" instance=ExtResource("1_j0fgv")]
+collision_layer = 8
+collision_mask = 11
+script = ExtResource("2_furyp")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bh2o7d54e4a2i"]
+[gd_scene load_steps=12 format=3 uid="uid://bh2o7d54e4a2i"]
 
 [ext_resource type="PackedScene" uid="uid://dogudbc6a0xp3" path="res://game/critter/critter.tscn" id="1_ktovw"]
 [ext_resource type="Script" path="res://game/critter/player/beetle.gd" id="1_kv16y"]
@@ -22,6 +22,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_m4uyd"]
 radius = 0.1
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qhfk7"]
+radius = 0.51
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_khisy"]
 radius = 0.1
 
@@ -43,17 +46,20 @@ sprite_frames = SubResource("SpriteFrames_mhyxh")
 [node name="Player Input" type="Node" parent="." index="2"]
 script = ExtResource("2_ja5af")
 
-[node name="LD56DirectionFromMovement" type="Node" parent="." index="3" node_paths=PackedStringArray("moveable")]
-script = ExtResource("5_3uiny")
-moveable = NodePath("..")
-
-[node name="Item Sense" type="Area2D" parent="." index="4"]
+[node name="Item Sense" type="Area2D" parent="." index="3"]
 position = Vector2(0, -0.5)
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Item Sense" index="0"]
 shape = SubResource("CircleShape2D_m4uyd")
+
+[node name="Enemy Sense" type="Area2D" parent="." index="4"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Sense" index="0"]
+shape = SubResource("CircleShape2D_qhfk7")
 
 [node name="Mouth Sense" type="Area2D" parent="." index="5"]
 position = Vector2(0, -0.2)
@@ -63,9 +69,13 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mouth Sense" index="0"]
 shape = SubResource("CircleShape2D_khisy")
 
+[node name="LD56DirectionFromMovement" type="Node" parent="Controllers" index="0"]
+script = ExtResource("5_3uiny")
+
 [connection signal="started_moving" from="." to="Skin/BodyFeet" method="_on_beetle_started_moving"]
 [connection signal="stopped_moving" from="." to="Skin/BodyFeet" method="_on_beetle_stopped_moving"]
 [connection signal="action" from="Player Input" to="." method="release_ball"]
 [connection signal="movement" from="Player Input" to="." method="move"]
 [connection signal="area_entered" from="Item Sense" to="." method="_on_item_sense_area_entered"]
+[connection signal="body_entered" from="Enemy Sense" to="." method="_on_enemy_sense_body_entered"]
 [connection signal="area_entered" from="Mouth Sense" to="." method="_on_mouth_sense_area_entered"]
