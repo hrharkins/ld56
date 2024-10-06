@@ -42,8 +42,16 @@ func interact_with_beetle_ball(beetle: LD56Beetle) -> void:
 	super(beetle)
 	var ball := beetle.drop_ball()
 	if ball != null:
-		LD56Game.find_from(self).add_score(ball.size * ball.size)
 		ball.queue_free()
+
+		var game := LD56Game.find_from(self)
+		if game != null:
+			game.add_score(beetle.points_for_dung(ball.size, ball.max_size))
+
+		if not LD56TileSpace.find_from(self).dung_remaining():
+			print_debug("COMPLETE")
+			if game != null:
+				game.level_completed()
 
 ## Purpose of inner class
 #class MyClass:

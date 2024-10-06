@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=4 uid="uid://bmycotsv5hfos"]
+[gd_scene load_steps=6 format=4 uid="uid://bmycotsv5hfos"]
 
 [ext_resource type="TileSet" uid="uid://cqduyhw7mtb2n" path="res://game/level/map/desert.tres" id="1_4qa0o"]
+[ext_resource type="Script" path="res://game/level/tile_space.gd" id="1_q2b53"]
 [ext_resource type="TileSet" uid="uid://vgqq1ix85ekn" path="res://game/level/elements.tres" id="2_ae8hw"]
 [ext_resource type="TileSet" uid="uid://cnd8rxrdk1f2m" path="res://game/level/player_tiles.tres" id="3_0qaug"]
 [ext_resource type="TileSet" uid="uid://bmkshcaas5iu3" path="res://game/level/enemy_tiles.tres" id="4_jxc70"]
@@ -9,8 +10,10 @@
 offset_right = 948.0
 offset_bottom = 533.0
 
-[node name="Tile Space" type="Node2D" parent="."]
+[node name="Tile Space" type="Node2D" parent="." node_paths=PackedStringArray("elements_map")]
 scale = Vector2(32, 32)
+script = ExtResource("1_q2b53")
+elements_map = NodePath("Elements")
 
 [node name="Walls" type="TileMapLayer" parent="Tile Space"]
 scale = Vector2(0.031, 0.031)

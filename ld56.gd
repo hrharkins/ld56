@@ -20,8 +20,11 @@ static func find_from(node: Node) -> LD56Game:
 ## Description of export
 #@export var myexport := 0
 
-## Description of signal
+## Signals when score changes
 signal score_updated(score: int)
+
+## Signals when carried dung changes
+signal dung_carried_updated(size: int, max: int)
 
 ## Current score (may be from previous game)
 var score := 0 :
@@ -29,7 +32,7 @@ var score := 0 :
 		if score != value:
 			score = value
 			score_updated.emit(score)
-			
+
 
 #############################################################################
 # Initialization
@@ -51,6 +54,14 @@ func _ready() -> void:
 ## Score points and notify other parts of the system
 func add_score(points: int) -> void:
 	score += points
+
+## Called when level compelted
+func level_completed():
+	print_debug("Level completed!")
+	
+## Called to update the dung indicator
+func update_dung_carried(carried: int, carry_max: int, points: int) -> void:
+	dung_carried_updated.emit(carried, carry_max, points)
 
 ## Purpose of inner class
 #class MyClass:

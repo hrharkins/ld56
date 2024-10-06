@@ -67,8 +67,8 @@ func stopped_moving() -> void:
 	#pass
 
 
-func _on_beetle_started_moving(critter: LD56Critter) -> void:
+func _on_beetle_started_moving(_critter: LD56Critter) -> void:
 	started_moving()
 
-func _on_beetle_stopped_moving(critter: LD56Critter) -> void:
+func _on_beetle_stopped_moving(_critter: LD56Critter) -> void:
 	stopped_moving()

@@ -17,6 +17,9 @@ class_name LD56BeetleInput
 ## Sent when input movement state changes
 signal movement(dir: Vector2)
 
+## Sent if the action button/key is pressed.
+signal action()
+
 ## Purpose of variable
 #var myvar := 0.0
 
@@ -63,6 +66,9 @@ func _physics_process(_delta: float) -> void:
 	if velocity != _velocity:
 		_velocity = velocity
 		movement.emit(velocity)
+		
+	if Input.is_action_just_pressed(config.action):
+		action.emit()
 
 #func _input(event: InputEvent) -> void:
 	#pass

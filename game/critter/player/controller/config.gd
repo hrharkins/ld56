@@ -16,6 +16,7 @@ class_name LD56InputConfig
 @export var down := "ui_down"
 @export var left := "ui_left"
 @export var right := "ui_right"
+@export var action := "ui_select"
 
 ## Description of signal
 #@signal signal mysignal()

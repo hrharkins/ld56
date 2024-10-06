@@ -29,9 +29,19 @@ var dungball : LD56Dungball
 ## Drop the ball
 func drop_ball() -> LD56Dungball:
 	var ball := dungball
-	dung_carrier_node.remove_child(ball)
 	dungball = null
+	update_dung()
 	return ball
+	
+## Release the back back to the floor
+func release_ball():
+	var ball := drop_ball()
+	if ball != null:
+		var space := LD56TileSpace.find_from(self)
+		if space != null:
+			space.accept_dungball(ball)
+		else:
+			ball.queue_free()
 
 #############################################################################
 # Initialization
@@ -40,8 +50,8 @@ func drop_ball() -> LD56Dungball:
 #func constructor():
 	#pass
 	
-#func _ready() -> void:
-	#pass
+func _ready() -> void:
+	update_dung()
 
 #############################################################################
 # Private/protected members, methods, and inner classes.
@@ -50,9 +60,28 @@ func drop_ball() -> LD56Dungball:
 ## Purpose of member
 #var _local := 0.0
 
+## Lets the overall game know the level of dung being pushed
+func update_dung():
+	var dung_carried := 0 if dungball == null else dungball.size
+	var max_dung := 1 if dungball == null else dungball.max_size
+
+	var game := LD56Game.find_from(self)
+	if game != null:
+		var points := points_for_dung(dung_carried, max_dung)
+		game.update_dung_carried(dung_carried, max_dung, points)
+
 ## Try to incorporate a new dungball into the current one, grabbing the new
 ## one if we don't have one already.
 func integrate_dung(dung: LD56Dungball) -> void:
+	if dung == dungball:
+		return
+	elif dungball == null:
+		return
+	elif dungball.add_dung(dung):
+		dung.queue_free()
+	update_dung()
+
+func accept_dung(dung: LD56Dungball) -> void:
 	if dung == dungball:
 		return
 	elif dungball == null:
@@ -62,8 +91,7 @@ func integrate_dung(dung: LD56Dungball) -> void:
 		print_debug(dungball)
 	elif dungball.add_dung(dung):
 		dung.queue_free()
-	else:
-		push_warning("Cannot add dung")
+	update_dung()
 		
 # Computes the beetle's current speed.
 func get_speed() -> float:
@@ -74,7 +102,11 @@ func get_speed() -> float:
 			* (dungball.size * 1.0 / dungball.max_size)
 		)
 	return _speed
-	
+
+## Computes the score for dung of a given size
+func points_for_dung(size: int, max: int) -> int:
+	return floor(size ** 1.2)
+
 ## Purpose of inner class
 #class MyClass:
 	#pass
@@ -95,3 +127,8 @@ func _physics_process(_delta: float) -> void:
 func _on_item_sense_area_entered(area: Area2D) -> void:
 	if area is LD56Element:
 		area.call_deferred("interact_with_beetle_ball", self)
+
+
+func _on_mouth_sense_area_entered(area: Area2D) -> void:
+	if area is LD56Element:
+		area.call_deferred("interact_with_beetle_mouth", self)

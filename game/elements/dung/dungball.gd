@@ -83,6 +83,10 @@ func interact_with_beetle_ball(beetle: LD56Beetle) -> void:
 	super(beetle)
 	beetle.integrate_dung(self)
 
+func interact_with_beetle_mouth(beetle: LD56Beetle) -> void:
+	super(beetle)
+	beetle.accept_dung(self)
+
 ## Purpose of inner class
 #class MyClass:
 	#pass

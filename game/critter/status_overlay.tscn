@@ -1,0 +1,110 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnnvbqh52t4cx"]
+
+[ext_resource type="Script" path="res://game/level/status_overlay.gd" id="1_8mc6o"]
+[ext_resource type="Script" path="res://game/level/score_display.gd" id="2_4gnbu"]
+[ext_resource type="Script" path="res://game/critter/dung_meter.gd" id="3_c28fx"]
+
+[sub_resource type="Gradient" id="Gradient_vlaiu"]
+colors = PackedColorArray(0, 1, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ao74h"]
+gradient = SubResource("Gradient_vlaiu")
+width = 200
+height = 24
+
+[node name="Status Overlay" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8mc6o")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Score" type="HBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Score"]
+layout_mode = 2
+text = "Score"
+
+[node name="Value" type="Label" parent="HBoxContainer/Score"]
+layout_mode = 2
+script = ExtResource("2_4gnbu")
+
+[node name="Dung Carried" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/Dung Carried"]
+layout_mode = 2
+text = "Pushing"
+
+[node name="Dung Meter" type="Control" parent="HBoxContainer/Dung Carried" node_paths=PackedStringArray("progressbar", "size_label", "points_label")]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("3_c28fx")
+progressbar = NodePath("ProgressBar")
+size_label = NodePath("HBoxContainer/Amount")
+points_label = NodePath("HBoxContainer/Points")
+
+[node name="ProgressBar" type="TextureProgressBar" parent="HBoxContainer/Dung Carried/Dung Meter"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+value = 100.0
+texture_progress = SubResource("GradientTexture2D_ao74h")
+texture_progress_offset = Vector2(12, 0)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Dung Carried/Dung Meter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Amount" type="Label" parent="HBoxContainer/Dung Carried/Dung Meter/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacer" type="Label" parent="HBoxContainer/Dung Carried/Dung Meter/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Points" type="Label" parent="HBoxContainer/Dung Carried/Dung Meter/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Lives" type="HBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Label" type="Label" parent="HBoxContainer/Lives"]
+layout_mode = 2
+text = "Lives
+"
+
+[node name="Value" type="Label" parent="HBoxContainer/Lives"]
+layout_mode = 2
+
+[node name="Level" type="HBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="HBoxContainer/Level"]
+layout_mode = 2
+text = "Level"
+
+[node name="Value" type="Label" parent="HBoxContainer/Level"]
+layout_mode = 2

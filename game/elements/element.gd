@@ -45,6 +45,9 @@ static func find_from(node: Node) -> LD56Element:
 ## Called when player's item area interactw with this element.
 func interact_with_beetle_ball(_beetle: LD56Beetle) -> void:
 	pass
+	
+func interact_with_beetle_mouth(_beetle: LD56Beetle) -> void:
+	pass
 
 ## Purpose of inner class
 #class MyClass:

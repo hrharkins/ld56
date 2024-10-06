@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://k7ao420qbjlp" path="res://debug/level/test.tscn" id="1_m6r7x"]
 [ext_resource type="Script" path="res://ld56.gd" id="1_whsb8"]
-[ext_resource type="PackedScene" uid="uid://bnnvbqh52t4cx" path="res://game/level/status_overlay.tscn" id="1_x37gw"]
+[ext_resource type="PackedScene" uid="uid://bnnvbqh52t4cx" path="res://game/critter/status_overlay.tscn" id="1_x37gw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tpjt6"]
 
