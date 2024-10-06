@@ -26,7 +26,6 @@ static func find_ancestor_of(descendant: Node, type: Variant) -> Variant:
 		descendant = descendant.get_parent()
 	return descendant
 
-
 #############################################################################
 # Initialization
 #############################################################################

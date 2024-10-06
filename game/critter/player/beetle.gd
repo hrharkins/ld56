@@ -88,8 +88,8 @@ func accept_dung(dung: LD56Dungball) -> void:
 		dung.reparent(self.dung_carrier_node)
 		dung.position = Vector2.ZERO
 		dungball = dung
+		print_debug(dungball)
 	elif dungball.add_dung(dung):
-		push_warning("Dropping dung ball: ", dung)
 		dung.queue_free()
 	update_dung()
 		
@@ -104,8 +104,7 @@ func get_speed() -> float:
 	return _speed
 
 ## Computes the score for dung of a given size
-func points_for_dung(size: int, _max_size: int) -> int:
-	# TODO: Move this to some sort of resource at the game global level.
+func points_for_dung(size: int, max: int) -> int:
 	return floor(size ** 1.2)
 
 ## Purpose of inner class
@@ -124,3 +123,12 @@ func _physics_process(_delta: float) -> void:
 
 #func _input(event: InputEvent) -> void:
 	#pass
+	
+func _on_item_sense_area_entered(area: Area2D) -> void:
+	if area is LD56Element:
+		area.call_deferred("interact_with_beetle_ball", self)
+
+
+func _on_mouth_sense_area_entered(area: Area2D) -> void:
+	if area is LD56Element:
+		area.call_deferred("interact_with_beetle_mouth", self)

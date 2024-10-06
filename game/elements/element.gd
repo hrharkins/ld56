@@ -1,5 +1,5 @@
 # Copyright (c) 2024 Rich Harkins.  All Rights Reserved.
-extends Node2D
+extends Area2D
 class_name LD56Element
 
 ## Purpose of this script.
@@ -23,7 +23,7 @@ static func find_from(node: Node) -> LD56Element:
 #signal mysignal()
 
 ## Purpose of variable
-#var is_mobile := false
+#var myvar := 0.0
 
 #############################################################################
 # Initialization
@@ -41,7 +41,6 @@ static func find_from(node: Node) -> LD56Element:
 
 ## Purpose of member
 #var _local := 0.0
-
 
 ## Called when player's item area interactw with this element.
 func interact_with_beetle_ball(_beetle: LD56Beetle) -> void:
